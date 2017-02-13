@@ -1,0 +1,27 @@
+{% extends "base.html"%}
+{% block content %}
+	<div class="main">
+		<form method="post">
+			<div class="form-group">
+				<h2>User Registration Form</h2>
+				<label>Username
+					<input type="text" class="form-control" name="username" value="{{username}}">
+				</label><br>
+				<span style="color:red;">{{error_user}}</span></br></br>
+				<label>Password
+					<input type="password" class="form-control" name="password" value="">
+				</label><br>
+				<span style="color:red;">{{error_password}}</span></br></br>
+				<label>Verify Password
+					<input type="password" class="form-control" name="verify" value="">
+				</label><br>
+				<span style="color:red;">{{error_password2}}</span></br></br>
+				<label>Email (optional)
+					<input type="text" class="form-control" name="email" value="{{email}}">
+				</label><br>
+				<span style="color:red;">{{error_email}}</span></br></br>
+				<input class="btn btn-default" type="submit">
+			</div>
+		</form>
+	</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+	<h2>Post and Comments!</h2><br>
+	<div class="post-heading">
+		<div class="post-title">{{ post.subject }}</div>
+		<div class="post-creation-dt">{{post.created.strftime("%b %d, %Y")}}</div>
+		<hr>
+	</div>
+	<p>{{post.content}}</p><br>
+	<h4 class="comments"><=====Comments=====></h4>
+	{% for comment in comments %}
+		<div class="comment-main">
+			<div class="post-heading">
+				<div class="post-creation-dt">{{comment.created.strftime("%b %d, %Y")}}</div>
+			</div>
+			<hr>
+			<div class="comment-body">{{comment.comment}} -- <b>{{ comment.user_name }}</b></div>
+			{% if user %}
+				<a class="comment-btn" href="/blog/{{ post.key().id() }}/{{ user.key().id() }}/editcomment/{{ comment.key().id() }}">Edit Comment</a>
+				<a class="comment-btn" href="/blog/{{ post.key().id() }}/{{ user.key().id() }}/deletecomment/{{ comment.key().id() }}">Delete Comment</a>
+			{% endif %}
+			<div class="error">{{ cerror }}</div>
+		</div>
+	{% endfor %}
+{% endblock %}

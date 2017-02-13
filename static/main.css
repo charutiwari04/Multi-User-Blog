@@ -1,0 +1,68 @@
+body{
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	margin: 0 auto;
+	font-size: 14px;
+}
+h1{
+	background-color: pink; 
+	color: blue; 
+	margin:0; 
+	padding: 10px;
+	height: 50px;
+	font-size: 24px;
+	font-weight: bold;
+}
+.main{
+	text-align: center;
+}
+.error{
+	color: red;
+}
+.title{
+	width: 500px;
+	margin: 15px;
+}
+.post{
+	margin: 15px;
+	width: 500px;
+	height: 400px;
+}
+.post-heading{
+	position: relative;
+}
+.post-title{
+	font-size: 20px;
+	font-weight: bold;
+}
+.post-creation-dt{
+	right: 0px;
+	bottom: 0px;
+	position: absolute;
+	color: #999;
+}
+hr{
+	color: black;
+}
+.error{
+	color: red;
+}
+.right-side{
+	float: right;
+}
+a, div>a{
+	color: blue;
+	text-decoration: none !important;
+	font-weight: bold;
+}
+.comments{
+	color: green;
+}
+.byuser{
+	float: right;
+	color: blue;
+}
+.comment-btn{
+	border: 1px black solid;
+	padding: 2px;
+	border-radius: 5px;
+}

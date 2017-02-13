@@ -1,0 +1,53 @@
+{% extends "base.html"%}
+	{% block content %}
+	{% for blog in blogs %}
+		<div class="post-main">
+			<div class="post-heading">
+				<div class="post-title"><a href="/blog/{{ blog.key().id() }}">{{blog.subject}}</a></div>
+				<div class="post-creation-dt">{{blog.created.strftime("%b %d, %Y")}}</div>
+			</div>
+			<hr>
+			<div class="post-body">{{blog.content}}</div><br>
+			<div class="post-edit">
+				<div class="row">
+					{% if user.username != None %}
+						{% if user.username == blog.username %}
+							<div class="col-md-4">
+								<form action="/blog/edit/{{ blog.key().id() }}">
+									<button class="edit-btn btn">Edit Post</button>
+								</form>
+							</div>
+							<div class="col-md-4">
+								<form action="/blog/delete/{{ blog.key().id() }}">
+									<button class="del-btn btn">Delete Post</button>
+								</form>
+							</div>
+						{% else %}
+							<div class="col-md-4">
+								<form action="/blog/like/{{ blog.key().id() }}" method="post">
+									<button class="btn">Like</button> 
+									{{ blog.likes }}
+								</form>
+							</div>
+							<div class="col-md-4">
+								<form action="/blog/unlike/{{ blog.key().id() }}" method="post">
+									<button class="btn">Unlike</button>
+									{{ blog.unlikes}}
+								</form>
+							</div>
+							<span class="error">{{ uerror }}</span>
+							<span class="error">{{ lerror }}</span>
+						{% endif %}
+						{% if user %}
+							<div class="col-md-4">
+								<form action="/blog/{{ blog.key().id() }}/addcomment/{{ user.key().id() }}">
+									<button  class="btn">Add Comment</button>
+								</form>
+							</div>
+						{% endif %}
+					{% endif %}
+				</div>
+			</div>
+		</div><br>
+	{% endfor %}
+	{% endblock %}

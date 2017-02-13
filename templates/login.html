@@ -1,0 +1,22 @@
+{% extends "base.html"%}
+{% block content %}
+	<div class="main">
+		<div class="message">{{ message }}</div>
+			<form method="post">
+				<h2>Login</h2>
+				<label>Username
+					<input type="text" name="username" value="">
+				</label></br></br>
+				<label>Password
+					<input type="password" name="password" value="">
+				</label>
+				<span style="color:red;">{{error}}</span></br></br>
+				<input class="btn btn-primary" type="submit">
+			</form>
+			<br><br>
+			<p>Not yet Registered?</p>
+			<form action="/blog/registration">
+				<button class="btn btn-warning signup">Register Here</button>
+			</form>
+	</div>
+{% endblock %}

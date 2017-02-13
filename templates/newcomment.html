@@ -1,0 +1,16 @@
+{% extends "base.html"%}
+{% block content %}
+	<div class="main">
+		<h2>New Comment Form</h2>
+		<form method="post">
+			<div class="form-group">
+				<label for="comment1">Your Comment:
+					<textarea id="comment1" class="comment form-control" name="comment">{{ comment }}</textarea>
+				</label><br>
+				<div class="error">{{ error }}</div><br>
+				<input class="btn" type="submit" value="Submit"><br>
+				<a href="/blog">Cancel</a>
+			</div>
+		</form>
+	</div>
+{% endblock %}
