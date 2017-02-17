@@ -23,18 +23,18 @@
 								</form>
 							</div>
 						{% else %}
-							<div class="col-md-4">
+							<div class="col-md-8">
 								<form action="/blog/like/{{ blog.key().id() }}" method="post">
 									<button class="btn">Like</button> 
 									{{ blog.likes }}
 								</form>
 							</div>
-							<div class="col-md-4">
+							<!--<div class="col-md-4">
 								<form action="/blog/unlike/{{ blog.key().id() }}" method="post">
 									<button class="btn">Unlike</button>
 									{{ blog.unlikes}}
 								</form>
-							</div>
+							</div>-->
 							<span class="error">{{ uerror }}</span>
 							<span class="error">{{ lerror }}</span>
 						{% endif %}
