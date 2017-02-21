@@ -1,6 +1,7 @@
 from handlers.bloghandler import *
 
-#### Error Handler
+
+# Error Handler
 class LoginError(BlogHandler):
     def get(self):
-        self.render("login-error.html", message = self.message)
+        self.render("login-error.html", message=self.message)

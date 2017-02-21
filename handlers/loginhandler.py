@@ -1,9 +1,11 @@
 from handlers.bloghandler import *
 
-#### Login Handler
+
+# Login Handler
 class LoginPage(BlogHandler):
     def get(self):
         self.render("login.html")
+
     def post(self):
         username = self.request.get("username")
         password = self.request.get("password")
@@ -13,4 +15,4 @@ class LoginPage(BlogHandler):
             self.redirect('/')
         else:
             msg = "Invalid User"
-            self.render("login.html", error = msg)
+            self.render("login.html", error=msg)

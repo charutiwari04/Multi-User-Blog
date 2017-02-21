@@ -1,6 +1,7 @@
 from handlers.bloghandler import *
 
-#### Logout Handler
+
+# Logout Handler
 class LogoutPage(BlogHandler):
     def get(self):
         self.logout()

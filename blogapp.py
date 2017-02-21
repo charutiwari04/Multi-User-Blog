@@ -14,6 +14,7 @@ from handlers.likehandler import *
 from handlers.welcomehandler import *
 from handlers.errorhandler import *
 
+
 def render_post(response, post):
     response.out.write('<b>' + post.subject + '</b><br>')
     response.out.write(post.content)
@@ -35,4 +36,3 @@ app = webapp2.WSGIApplication([
     ('/blog/([0-9]+)/([0-9]+)/deletecomment/([0-9]+)', DeleteComment),
     ('/blog/like/([0-9]+)', LikeHandler),
     ], debug=True)
-

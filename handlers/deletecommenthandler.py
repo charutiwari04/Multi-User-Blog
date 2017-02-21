@@ -1,6 +1,7 @@
 from handlers.bloghandler import *
 
-#### Handler for deleting one comment
+
+# Handler for deleting one comment
 class DeleteComment(BlogHandler):
     def get(self, postid, userid, commentid):
         if not self.user:
@@ -17,4 +18,4 @@ class DeleteComment(BlogHandler):
             self.redirect("/blog/%s" % postid)
         else:
             err = "You can not delete other User's comment."
-            self.render("error.html", error = err)
+            self.render("error.html", error=err)

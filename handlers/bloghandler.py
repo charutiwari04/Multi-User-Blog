@@ -7,12 +7,21 @@ from models.blogs import *
 from models.users import *
 from models.comments import *
 from userauth import *
-
 # Code for rendering the templates on webpage using jinja2.
 template_dir = os.path.join(os.path.dirname(__file__), '../templates')
-jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
-                               autoescape = True)
+jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir),
+                               autoescape=True)
+
+
 class BlogHandler(webapp2.RequestHandler):
+    """
+    BlogHandler: This class is having comman methods for all
+                classes. It also initializes and sets userid to
+                current user if login. It is having common code
+                for setting cookie, deleting cookie and checking
+                cookie
+    Args: webapp2.RequestHandler
+    """
     def write(self, *a, **kw):
         self.response.write(*a, **kw)
 
@@ -22,12 +31,14 @@ class BlogHandler(webapp2.RequestHandler):
 
     def render(self, template, **kw):
         self.write(self.render_str(template, **kw))
-        
+
     # making cookie secured value
     def set_secure_cookie(self, name, val):
         cookie_val = make_hash(val)
-        self.response.headers.add_header('Set-Cookie', '%s=%s; Path=/' % (name, cookie_val))
-        
+        self.response.headers.add_header('Set-Cookie',
+                                         '%s=%s; Path=/'
+                                         % (name, cookie_val))
+
     # find the received cookie value
     def check_secure_cookie(self, name):
         cook_val = self.request.cookies.get(name)
@@ -36,8 +47,8 @@ class BlogHandler(webapp2.RequestHandler):
     # set cookie
     def login(self, user):
         self.set_secure_cookie('user_id', str(user.key().id()))
-        
-    # delete all cookies    
+
+    # delete all cookies
     def logout(self):
         self.response.headers.add_header('Set-Cookie', 'user_id=; Path=/')
 
@@ -47,11 +58,14 @@ class BlogHandler(webapp2.RequestHandler):
         uid = self.check_secure_cookie('user_id')
         self.user = uid and UserForPost.by_id(int(uid))
         self.message = 'Can not post on blog, You need to login.'
+
+
 def render_str(template, **params):
     t = jinja_env.get_template(template)
     return t.render(params)
 
-#### check_if_valid_post decorator
+
+# check_if_valid_post decorator
 def check_if_valid_post(function):
     @wraps(function)
     def wrapper(self, post_id):
@@ -63,4 +77,3 @@ def check_if_valid_post(function):
             self.error(404)
             return
     return wrapper
-
